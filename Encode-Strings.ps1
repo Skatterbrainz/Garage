@@ -1,4 +1,15 @@
-﻿
+﻿<#
+.SYNOPSIS
+    Contains functions to encode (obfuscate) and decode string values
+    using classic "ASCII chunking" method. It's chunkatastic.
+
+.NOTE
+    Author: David M. Stein
+    Date Created: 03/04/2014
+    Date Modified: 10/17/2016
+#>
+
+
 <#
 .SYNOPSIS
     Encode-String converts a readable string value into a semi-encoded
