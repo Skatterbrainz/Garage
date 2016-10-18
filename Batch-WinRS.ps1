@@ -1,7 +1,7 @@
-﻿$Servers = Get-Content "C:\Users\davidstein\Documents\Scripts\PowerShell\servers.txt"
+﻿$Servers = Get-Content "servers.txt"
 
-$RunThis = "\\Server22\stuff\coolstuff.bat"
+$RunThis = "\\Server1\Apps\Scripts\whatev.bat"
 
 foreach ($Server in $Servers) {
-    Write-Output "winrs -r:$Server -u:BigKahuna -p:P@ssw0rd $RunThis"
+    Write-Output "winrs -r:$Server -u:BigKahuna -p:P@ssw0rd123 $RunThis"
 }
