@@ -1,3 +1,18 @@
+<#
+.DESCRIPTION
+    Toggle the systray icon display setting between show-all and show-selected
+
+.PARAMETER Toggle
+    [optional] [string] "On" or "Off"
+
+.PARAMETER ForceUpdate
+    [optional] [switch] Forces restart of the explorer shell process
+
+.NOTES
+    Author: David M. Stein
+    Date: 03/18/2017
+#>
+
 
 param (
     [parameter(Mandatory=$False)]
