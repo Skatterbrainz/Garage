@@ -17,23 +17,23 @@
 .EXAMPLE
  New-DataCollectorSet -CSVFilePath C:\Scripts\Servers.csv -XMLFilePath C:\Scripts\PerfmonTemplate.xml -DataCollectorName CPUIssue
 #>
+[CmdletBinding()]
 param (
-    [parameter(Mandatory=$True, HelpMessage='Path of CSV file to import')] $CSVFilePath,
-    [parameter(Mandatory=$True, HelpMessage='Path of XML file to import')] $XMLFilePath,
-    [parameter(Mandatory=$True, HelpMessage='Name of new Data Collector')] $DataCollectorName
+    [parameter(Mandatory=$True, HelpMessage='Path of CSV file to import')] 
+        [string] $CSVFilePath,
+    [parameter(Mandatory=$True, HelpMessage='Path of XML file to import')] 
+        [string] $XMLFilePath,
+    [parameter(Mandatory=$True, HelpMessage='Name of new Data Collector')] 
+        [string] $DataCollectorName
 )
 
 # Test for existence of supplied CSV and XML files
-if (Test-Path $CSVFilePath) {
-}
-else {
-    Write-Host "Path to CSV file is invalid, exiting script"
+if (!(Test-Path $CSVFilePath)) {
+    Write-Warning "Path to CSV file is invalid, exiting script"
     Exit
 }
-if (Test-Path $XMLFilePath) {
-}
-else {
-    Write-Host "Path to XML file is invalid, exiting script"
+if (!(Test-Path $XMLFilePath)) {
+    Write-Warning "Path to XML file is invalid, exiting script"
     Exit
 }
 
@@ -41,13 +41,13 @@ else {
 $servers = Get-Content $CSVFilePath
 
 foreach ($server in $servers) {
-    Write-Host "Creating Data Collector Set on $Server"
+    Write-Verbose "Creating Data Collector Set on $Server"
 
     # Test if the folder C:\temp exists on the target server
-    if (Test-Path "\\$server\c$\Temp") {
+    if (Test-Path "\\$server\c`$\Temp") {
 
         # Copy the XML file to the target server
-        Copy-Item $XMLFilePath "\\$server\c$\Temp"
+        Copy-Item $XMLFilePath "\\$server\c`$\Temp"
 
         # Use PowerShell Remoting to execute script block on target server
         Invoke-Command -ComputerName $server -ArgumentList $DataCollectorName -ScriptBlock {param($DataCollectorName)
@@ -56,16 +56,16 @@ foreach ($server in $servers) {
             # use that to set the XML setting, create the DataCollectorSet,
             # start it.
             $datacollectorset = New-Object -COM Pla.DataCollectorSet
-            $xml = Get-Content C:\temp\PerfmonTemplate.xml
+            $xml = Get-Content "C:\temp\PerfmonTemplate.xml"
             $datacollectorset.SetXml($xml)
             $datacollectorset.Commit("$DataCollectorName" , $null , 0x0003) | Out-Null
             $datacollectorset.start($false)
         }
 
         # Remove the XML file from the target server
-        Remove-Item "\\$server\c$\Temp\PerfmonTemplate.xml"
+        Remove-Item "\\$server\c`$\Temp\PerfmonTemplate.xml"
     }
     else {
-        Write-Host "Target Server does not contain the folder C:\Temp"
+        Write-Warning "Target Server does not contain the folder C:\Temp"
     }
 }
