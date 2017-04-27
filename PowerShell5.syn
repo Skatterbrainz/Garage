@@ -1737,6 +1737,7 @@ Private
 AllowEmptyCollection
 AllowEmptyString
 AllowNull
+CmdletBinding
 HelpMessage
 Ignore
 Inquire
