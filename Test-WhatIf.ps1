@@ -1,4 +1,4 @@
-function Foo {
+function Test-WhatIf {
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
         [string] $Test
