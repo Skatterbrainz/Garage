@@ -1,0 +1,26 @@
+;; for use with choco.ps1
+;; hide a package by inserting a semi-colon in front of the name
+notepadplusplus
+git
+visualstudiocode
+vscode-mssql
+vscode-powershell
+vscode-csharp
+vscode-icons
+vscode-azurerm-tools
+7zip
+vlc
+rdcman
+putty
+googlechrome
+;firefox
+;googledrive
+googleearthpro
+googlephotos
+azcopy
+microsoftazurestorageexplorer
+teamviewer
+sysinternals
+jing
+office365proplus
+microsoft-teams
