@@ -21,5 +21,11 @@ $ws.Cells.Item(1,2).Font.Size = 16
 $ws.Name = "Computers"
 $ws.Cells.EntireColumn.AutoFit()
 
+# AutoFit Every Worksheet Column in a Workbook
+
+foreach ($wsht in $wb.Worksheets) {
+  $wsht.Cells.EntireColumn.AutoFit()
+}
+
 #$wb.Close()
 #$xl.Quit()
