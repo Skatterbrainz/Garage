@@ -6,7 +6,11 @@
 	
 .PARAMETER ExProfile
 	[string] [required] Name of user account to ignore when clearing profiles
-	
+
+.PARAMETER DomainName
+
+.PARAMETER OUPath
+
 .NOTES
 
 #>
@@ -19,7 +23,7 @@ param (
     [parameter(Mandatory=$False, HelpMessage="Profile to exclude from cleanup")]
 		[ValidateNotNullOrEmpty()]
 		[string] $ExProfile = "local1",
-	[parameter(Mandatory=$False, HelpMessage="Name of domain to joing")]
+	[parameter(Mandatory=$False, HelpMessage="Name of domain to join")]
 		[string] $DomainName = "contoso.com",
 	[parameter(Mandatory=$False, HelpMessage="OU Path to join computer to active directory")]
 		[string] $OuPath = "OU=Workstations,OU=Corporate,DC=contoso,DC=com"
