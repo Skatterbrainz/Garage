@@ -1,17 +1,17 @@
-Update-UserAttributs.ps1
+# Update-UserAttributs.ps1
 
-Overview: 
+## Overview: 
 
 	Updates AD user accounts using the [samaccountname] column
 	for the lookup value.  Additional columns specify the attributes to 
 	apply to the accounts.  
 
 
-Sample files included:
+## Sample files included:
 
 	BHFECA1.xlsx, BHFECA1.csv
 
-Description:
+## Description:
 	
 	Required parameters: Filename = path/name of CSV input file
 	
@@ -23,11 +23,11 @@ Description:
 	
 	This script supports -WhatIf and -Verbose
 	
-	NOTES:
-	
-	1. Cells which have values that contain embedded semi-colons ";" are 
-	   treated as multi-valued (the value is split into an array before
-	   assigning to the account attribute)
-	   
-	2. Attribute names are case-insensitive, as are sAMAccountName values
+## NOTES:
+
+1. Cells which have values that contain embedded semi-colons ";" are 
+   treated as multi-valued (the value is split into an array before
+   assigning to the account attribute)
+
+2. Attribute names are case-insensitive, as are sAMAccountName values
 	
