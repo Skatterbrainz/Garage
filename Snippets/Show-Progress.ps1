@@ -1,5 +1,5 @@
-function Show-Waiting-Progress {
-    PARAM (
+function Show-Progress {
+    param (
         [parameter(Mandatory=$True,Position=0)] [int] $DelaySeconds,
         [parameter(Mandatory=$False)] [string] $Caption = "Doing Something",
         [parameter(Mandatory=$False)] [string] $Message = "Please wait..."
@@ -16,4 +16,4 @@ function Show-Waiting-Progress {
     }
 }
 
-Show-Waiting-Progress -DelaySeconds 10 -Caption "Waiting for Server"
+Show-Progress -DelaySeconds 10 -Caption "Waiting for Server"
