@@ -1,4 +1,4 @@
-﻿<#
+<#
 .SYNOPSIS
     Get-MailboxSizes.ps1
 
@@ -50,21 +50,21 @@
 #>
 
 
-Param( 
+param ( 
     [Parameter(Position=0, Mandatory=$true, ValueFromPipeline=$true)] 
-    [string] $Office365Username, 
+        [string] $Office365Username, 
     [Parameter(Position=1, Mandatory=$true, ValueFromPipeline=$true)] 
-    [string] $Office365Password,
+        [string] $Office365Password,
     [Parameter(Position=2, Mandatory=$false, ValueFromPipeline=$true)] 
-    [string] $UserIDFile = "",
+        [string] $UserIDFile = "",
     [Parameter(Position=3, Mandatory=$False, ValueFromPipeline=$true)]
-    [string] $OutputFile = "mailboxsizes.csv",
+        [string] $OutputFile = "mailboxsizes.csv",
     [Parameter(Position=4, Mandatory=$False, ValueFromPipeline=$true)]
-    [int] $LimitTo = 10
+        [int] $LimitTo = 10
 ) 
 
 Function Show-Progress {
-    PARAM (
+    param (
         [parameter(Mandatory=$True)] [string] $Caption = "Progress",
         [parameter(Mandatory=$False)] [string] $Message = "Please wait...",
         [parameter(Mandatory=$True)] [int] $CurrentIndex,
@@ -75,22 +75,16 @@ Function Show-Progress {
     Start-Sleep 1
 }
 
-function ConnectTo-ExchangeOnline 
-{
-    Param(
+function ConnectTo-ExchangeOnline {
+    param (
         [Parameter(Mandatory=$true, Position=0)]
         [String]$Office365AdminUsername,
         [Parameter(Mandatory=$true, Position=1)]
         [String]$Office365AdminPassword
     )
-    $SecureOffice365Password = ConvertTo-SecureString `
-        -AsPlainText $Office365AdminPassword -Force
-    $Office365Credentials  = New-Object System.Management.Automation.PSCredential `
-        $Office365AdminUsername, $SecureOffice365Password
-    $Session = New-PSSession -ConfigurationName Microsoft.Exchange `
-        -ConnectionUri https://ps.outlook.com/powershell `
-        -Credential $Office365credentials `
-        -Authentication Basic -AllowRedirection
+    $SecureOffice365Password = ConvertTo-SecureString -AsPlainText $Office365AdminPassword -Force
+    $Office365Credentials  = New-Object System.Management.Automation.PSCredential $Office365AdminUsername, $SecureOffice365Password
+    $Session = New-PSSession -ConfigurationName Microsoft.Exchange -ConnectionUri https://ps.outlook.com/powershell -Credential $Office365credentials -Authentication Basic -AllowRedirection
     Import-PSSession $Session -AllowClobber | Out-Null
 }
 
@@ -98,11 +92,9 @@ function ConnectTo-ExchangeOnline
 $startTime = Get-Date
 
 Get-PSSession | Remove-PSSession 
-ConnectTo-ExchangeOnline -Office365AdminUsername $Office365Username `
-    -Office365AdminPassword $Office365Password
-Out-File -FilePath $OutputFile `
-    -InputObject "UserPrincipalName,SamAccountName,WhenCreated,Resource,ItemCount,MailboxSize" `
-    -Encoding utf8
+
+ConnectTo-ExchangeOnline -Office365AdminUsername $Office365Username -Office365AdminPassword $Office365Password
+Out-File -FilePath $OutputFile -InputObject "UserPrincipalName,SamAccountName,WhenCreated,Resource,ItemCount,MailboxSize" -Encoding utf8
 
 Show-Progress -Caption "Getting Mailboxes" -Message "Reading Source..." -CurrentIndex 1 -TotalCount 100
 if ($UserIDFile -ne "") {
@@ -110,7 +102,6 @@ if ($UserIDFile -ne "") {
     $objUsers = Import-Csv -Header "UserPrincipalName" $UserIDFile
 }
 else {
-    
     if ($LimitTo -gt 0) {
         Write-Verbose "reading $LimitTo mailbox users..."
         $objUsers = Get-Mailbox -ResultSize $LimitTo
@@ -129,8 +120,7 @@ foreach ($objUser in $objUsers) {
     $strUserPrincipalName = $objUser.UserPrincipalName 
     $sam = $objUser.SamAccountName
 
-    Show-Progress -Caption "Checking Mailboxes" -Message "[$rownum] of [$tnum]: $strUserPrincipalName" `
-        -CurrentIndex $rownum -TotalCount $tnum
+    Show-Progress -Caption "Checking Mailboxes" -Message "[$rownum] of [$tnum]: $strUserPrincipalName" -CurrentIndex $rownum -TotalCount $tnum
          
     Write-Verbose "getting mailbox: $strUserPrincipalName"
     $objUserMailbox = Get-MailboxStatistics -Identity $($objUser.UserPrincipalName)
@@ -143,13 +133,13 @@ foreach ($objUser in $objUsers) {
     $rownum++
 }
 Get-PSSession | Remove-PSSession 
-# ------
+
 $StopTime = Get-Date
 
 $RunSecs  = ((New-TimeSpan -Start $startTime -End $StopTime).TotalSeconds).ToString()
 $ts = [timespan]::FromSeconds($RunSecs)
 $RunTime = $ts.ToString("hh\:mm\:ss")
 
-Write-Host "------------------------------------------------"
-Write-Host "info: $tnum rows were processed."
-Write-Host "info: total runtime was $RunTime (hh:mm:ss)"
+#Write-Host "------------------------------------------------"
+Write-Output "info: $tnum rows were processed."
+Write-Output "info: total runtime was $RunTime (hh:mm:ss)"
