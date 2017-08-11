@@ -1,4 +1,4 @@
-﻿<#
+<#
 Get BIOS or UEFI Status and Write to WMI v1.0
 Idea for using setupact.log from Chris Warwick
 Created by Mark Godfrey @Geodesicz
