@@ -1,4 +1,4 @@
-﻿Import-Module ActiveDirectory
+#requires -Modules ActiveDirectory
 
 $Dom = Get-ADDomain
 $ADF = Get-ADForest
