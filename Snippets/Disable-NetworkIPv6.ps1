@@ -9,6 +9,6 @@
 
 Start-Transcript -Path "$env:TEMP\disable_ipv6.log"
 Get-NetAdapterBinding | 
-    ? {($_.ComponentId -eq 'ms_tcpip6') -and ($_.Enabled -eq $true)} | 
+    Where-Object {($_.ComponentId -eq 'ms_tcpip6') -and ($_.Enabled -eq $true)} | 
         Disable-NetAdapterBinding -ComponentID 'ms_tcpip6'
 Stop-Transcript
