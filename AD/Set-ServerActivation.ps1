@@ -1,4 +1,4 @@
-﻿Import-Module "ActiveDirectory"
+#requires -Modules ActiveDirectory
 
 $winkey = "XXXXX-XXXXX-XXXXX-XXXXX-XXXXX"
 $srvpat = "*scdp0*"
