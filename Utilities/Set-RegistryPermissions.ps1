@@ -1,4 +1,4 @@
-﻿<#
+<#
 refer to: https://msdn.microsoft.com/en-us/library/cs50ebzk(v=vs.110).aspx
 #>
 function Set-RegistryPermissions {
