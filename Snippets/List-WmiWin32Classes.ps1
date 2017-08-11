@@ -1,4 +1,4 @@
-﻿$managementClass = New-Object System.Management.ManagementClass
+$managementClass = New-Object System.Management.ManagementClass
 
 $enumOptions = New-Object System.Management.EnumerationOptions
 $enumOptions.EnumerateDeep = $true
