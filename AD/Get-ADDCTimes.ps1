@@ -1,4 +1,4 @@
-﻿Import-Module ActiveDirectory
+#requires -Modules ActiveDirectory
 
 $DClist = (Get-ADForest).Domains | %{Get-ADDomainController -Filter * -Server $_} | Select-Object Name
 $dcn = $DClist.Length
