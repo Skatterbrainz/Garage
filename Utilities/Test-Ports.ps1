@@ -31,12 +31,15 @@
 #>
 
 param (
-    [parameter(Mandatory=$True)] [string] $ComputerName,
-    [parameter(Mandatory=$True)] [int64] $PortNumber,
+    [parameter(Mandatory=$True)] 
+    	[string] $ComputerName,
+    [parameter(Mandatory=$True)] 
+    	[int64] $PortNumber,
     [parameter(Mandatory=$False)] 
         [ValidateSet('TCP','UDP')]
         [string] $Protocol = 'TCP',
-    [parameter(Mandatory=$False)] [int64] $Timeout = 1000
+    [parameter(Mandatory=$False)] 
+    	[int64] $Timeout = 1000
 )
 
 if ($Protocol -eq 'TCP') {
@@ -54,16 +57,13 @@ if (!$wait) {
 else {
     $tcpClient.EndConnect($iar) | Out-Null
     if(!$?) {
-        $failed = $true
+        $failed = $True
     }
     else {
-        $failed = $false
+        $failed = $False
     }
-    $tcpclient.close()
+    $tcpclient.Close()
 }
-if ($failed) {
-    write-host "false"
-}
-else {
-    write-host "true"
+if (-not($failed)) {
+	Write-Output $True
 }
