@@ -1,4 +1,4 @@
-# Update-UserAttributs.ps1
+# Update-UserAttributes.ps1
 
 ## Overview: 
 
@@ -30,4 +30,3 @@
    assigning to the account attribute)
 
 2. Attribute names are case-insensitive, as are sAMAccountName values
-	
