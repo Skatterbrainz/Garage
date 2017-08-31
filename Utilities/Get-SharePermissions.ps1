@@ -85,15 +85,19 @@ foreach ($computer in $computers) {
         $localPath  = $($share.path.Replace(':','$'))
         $remotePath = "\\$computer\$localPath"
         
-        #Write-Host "basePath...... $basePath" -ForegroundColor Yellow
-        #Write-Host "remotePath.... $remotePath" -ForegroundColor Yellow
+        Write-Verbose "share name.... $shareName"
+        Write-Verbose "share comment. $shareComm"
+        Write-Verbose "share path.... $sharePath"
+        Write-Verbose "remotePath.... $remotePath"
 
         if ($basePath -ne $remotePath) {
-            #write-host $remotePath
-            $test = icacls $remotepath
-            foreach ($descriptor in $test) {
-                if (($descriptor.length -gt 30) -and (-not($descriptor.Contains("Failed")) )) {
-                    $acl   = $descriptor.Substring(31).Trim()
+            $cacls = icacls "$remotepath"
+            $plist = $($cacls | %{$_.Replace("$remotePath","")}) | %{$_.Trim()}
+            # write-verbose "-----------------------------------"
+            # $plist
+            # write-verbose "-----------------------------------"
+            foreach ($descriptor in $plist) {
+                if (($descriptor -ne "") -and (-not($descriptor.StartsWith("Successfully")))) {
                     $perms = Get-ICaclsCode -AclString $acl
                     $data  = [ordered]@{
                         ComputerName = $computer
@@ -105,7 +109,7 @@ foreach ($computer in $computers) {
                     }
                     New-Object -TypeName PSObject -Property $data
                 }
-            }
+            } # foreach
         }
-    }
+    } # foreach
 }
