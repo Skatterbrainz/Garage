@@ -10,14 +10,23 @@
 
 # Employment History
 
-## Microsoft
+| Dates | 11/2015 to Present |
+| Title | Cloud Architect |
+| Employer | Cloud Research and Development |
+| Roles | Made cloud stuff work |
+| Keywords | azure aws windows server sqlserver intune ems powershell dsc |
 
-  * Premier Field Engineer
-  * 11/2015 to Present
+| Dates | 04/2005 to 11/2015 |
+| Title | Solutions Architect |
+| Employer | Fist-o-Matic |
+| Roles | Made systems stuff work |
+| Keywords | windows powershell dsc sqlserver activedirectory grouppolicy systemcenter |
 
 # Certifications and Licenses
 
-  * MCSA 2012
-  * MCITP-EA 208
+| Name | Date |
+|------|------|
+| MCSA 2012 | 2012 |
+| MCITP-EA 2008 | 2009 |
 
 # Publications
