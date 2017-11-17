@@ -16,6 +16,7 @@
 | Title | Cloud Architect |
 | Employer | Cloud Research and Development |
 | Roles | Made cloud stuff work |
+| Accomplishments | Develop multi-tenant PaaS and IaaS solutions for Fortune 100 customers |
 | Keywords | azure aws windows server sqlserver intune ems powershell dsc |
 
 | Key | Value |
@@ -24,6 +25,7 @@
 | Title | Solutions Architect |
 | Employer | Fist-o-Matic |
 | Roles | Made systems stuff work |
+| Accomplishments | Developed multi-server multi-product solutions for enterprise operations |
 | Keywords | windows powershell dsc sqlserver activedirectory grouppolicy systemcenter |
 
 # Certifications and Licenses
