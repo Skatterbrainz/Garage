@@ -14,9 +14,10 @@
    a. Sub-section 1
    b. Sub-section 2
 
+# Tech-Manual List Format
 
 1. Tech manual format
-   -1.1 Sub-section 1
-       -1.1.1 Sub-section nested 1
-       -1.1.2 Sub-section nested 2
-   -1.2 Sub-section 2
+   1. Sub-section 1
+       1. Sub-section nested 1
+       1. Sub-section nested 2
+   1. Sub-section 2
