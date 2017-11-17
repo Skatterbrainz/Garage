@@ -10,12 +10,16 @@
 
 # Employment History
 
+| Key | Value |
+|-----|-------|
 | Dates | 11/2015 to Present |
 | Title | Cloud Architect |
 | Employer | Cloud Research and Development |
 | Roles | Made cloud stuff work |
 | Keywords | azure aws windows server sqlserver intune ems powershell dsc |
 
+| Key | Value |
+|-----|-------|
 | Dates | 04/2005 to 11/2015 |
 | Title | Solutions Architect |
 | Employer | Fist-o-Matic |
