@@ -1,4 +1,4 @@
-$apps = ('duolingo','photoshop','networkspeedtest','sway','eclipse','skype','bingweather','bingnews','remotedesktop')
+$apps = ('duolingo','photoshop','networkspeedtest','sway','eclipse','skype','bingweather','bingnews','pandora','remotedesktop','xboxapp')
 
 foreach ($app in $apps) {
   write-host "removing: $app"
