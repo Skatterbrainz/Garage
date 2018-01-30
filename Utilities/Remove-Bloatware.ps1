@@ -1,4 +1,26 @@
-$apps = ('duolingo','photoshop','networkspeedtest','sway','eclipse','skype','bingweather','bingnews','pandora','remotedesktop','xboxapp')
+<#
+AppxList.txt
+
+Duolingo
+Photoshop
+Networkspeedtest
+Sway
+Eclipse
+Skype
+Bingweather
+Bingnews
+Pandora
+Remotedesktop
+Xboxapp
+OneConnect
+Onenote
+Netflix
+# add more
+#>
+
+$error.Clear()
+
+$apps = Get-Content “AppxList.txt”
 
 foreach ($app in $apps) {
   write-host "removing: $app"
@@ -8,4 +30,11 @@ foreach ($app in $apps) {
   catch {
     write-error $_.Exception.Message
   }
+  try {
+    Get-AppxProvisionedPackage -Online | Where-Object {$_.PackageName -like “*$app*”} | Remove-AppxProvisionedPackage -Online | Out-Null
+  }
+  catch {
+    write-error $_.Exception.Message
+  }
 }
+Write-Output $($error.Count)
