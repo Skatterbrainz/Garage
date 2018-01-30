@@ -27,7 +27,7 @@ function Set-RegistryPermissions {
     $keyCR.Close()
 }
 
-$testkey = "HKCU:\SOFTWARE\Contoso"
+$testkey = "HKLM:SOFTWARE\Contoso"
 $testval = "fubar"
 
 if (!(Test-Path $testkey)) {
