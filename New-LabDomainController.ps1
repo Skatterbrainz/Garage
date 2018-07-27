@@ -16,7 +16,7 @@ function New-LabDomainController {
       [switch] $InstallDHCP
   )
   Start-Transcript
-  
+  Write-Verbose "version.. 0.0.5"
   Write-Verbose "domain... $DomainName"
   Write-Verbose "dcname... $DCName"
   Write-Verbose "ipv4..... $IpAddress"
@@ -59,15 +59,47 @@ function New-LabDomainController {
     Write-Verbose "ip address is already set to $IpAddress"
   }
   
-  Write-Verbose "installing AD domain services role"
-  Install-WindowsFeature AD-Domain-Services -IncludeAllSubFeature -IncludeManagementTools -Force -Confirm:$False
+  if ($env:USERDNSDOMAIN -ne $DomainName) {
+    Write-Verbose "installing AD domain services role"
+    Install-WindowsFeature AD-Domain-Services -IncludeAllSubFeature -IncludeManagementTools -Force -Confirm:$False
 
-  Write-Verbose "creating AD forest and domain"
-  Install-ADDSForest -DomainName $DomainName -InstallDNS -NoRebootOnCompletion
+    Write-Verbose "creating AD forest and domain"
+    Install-ADDSForest -DomainName $DomainName -InstallDNS -NoRebootOnCompletion
+  }
   
   if ($InstallDHCP) {
-    Write-Verbose "installing DHCP role and features"
-    Install-WindowsFeature DHCP -IncludeAllSubFeature -IncludeManagementTools
+    if ((Get-WindowsFeature DHCP).InstallState -ne 'Installed') {
+      Write-Verbose "installing DHCP role and features"
+      try {
+        Install-WindowsFeature DHCP -IncludeAllSubFeature -IncludeManagementTools
+        netsh dhcp add securitygroups
+        Restart-Service DHCPServer
+        Add-DhcpServerInDC -DnsName $DCName -IPAddress $IpAddress
+        Get-DhcpServerInDC
+        Set-ItemProperty –Path registry::HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\ServerManager\Roles\12 –Name ConfigurationState –Value 2
+        Write-Host "enter credentials for dhcp authorization using DOMAIN\USER format" -ForegroundColor Green
+        $Credential = Get-Credential
+        Set-DhcpServerDnsCredential -Credential $Credential -ComputerName $DCName
+      }
+      catch {
+        Write-Warning "uh oh - shit just went sideways"
+      }
+    }
+    else {
+      Write-Verbose "DHCP role is already installed"
+    }
+    Write-Verbose "setting dhcp dns server settings"
+    try {
+      Set-DhcpServerv4DnsSetting -ComputerName $DCName -DynamicUpdates "Always" -DeleteDnsRRonLeaseExpiry $True
+      Add-DhcpServerv4Scope -Name "Norfolk" -StartRange 192.168.1.100 -EndRange 192.168.1.150 -SubnetMask 255.255.255.0 -State Active
+      Write-Verbose "dhcp v4 scope NORFOLK created successfully"
+    }
+    catch {
+      Write-Verbose "dhcp v4 scope NORFOLK already exists"
+    }
+    try {
+      
+    Set-DhcpServerv4OptionValue -ComputerName $DCName -DnsServer $IpAddress -WinsServer 192.168.1.3 -DnsDomain $DomainName -Router $IpGateway
   }
   
   Write-Verbose "creating organizational unit structure"
