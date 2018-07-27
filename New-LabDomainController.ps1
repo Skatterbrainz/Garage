@@ -102,4 +102,5 @@ function New-LabDomainController {
     New-ADUser -Name $ulist[0] -AccountPassword $pwd -ChangePasswordAtLogon:$False -DisplayName $ulist[1] -Enabled:$True -Path $UserRoot
   }
   Write-Host "complete!" -ForegroundColor Green
+  Stop-Transcript
 }
