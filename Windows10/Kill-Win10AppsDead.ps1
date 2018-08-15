@@ -1,3 +1,20 @@
+<#
+.DESCRIPTION
+Invoke Windows Store App Removals
+
+.PARAMETER Source
+URL to source script (github repo)
+
+.EXAMPLE
+.\Kill-Win10AppsDead.ps1
+
+.EXAMPLE
+iex $(New-Object System.Net.WebClient).DownloadString('<url-to-raw_Kill-Win10AppsDead.ps1>')
+
+.NOTES
+David Stein 08/15/2018
+#>
+[CmdletBinding()]
 param (
     [parameter(Mandatory=$False, HelpMessage="Source URL")]
     [ValidateNotNullOrEmpty()]
