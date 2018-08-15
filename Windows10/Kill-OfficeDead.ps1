@@ -41,6 +41,6 @@ foreach ($f in $files) {
 }
 if ($continue) {
     cd $env:TEMP
-    & Remove-PreviousOfficeInstalls.ps1
+    .\Remove-PreviousOfficeInstalls.ps1
 }
 Write-Host "finished" -ForegroundColor Green
