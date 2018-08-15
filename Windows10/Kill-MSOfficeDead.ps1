@@ -6,7 +6,7 @@ Source URL to the MS Office Scrub scripts (github repo)
 .EXAMPLE
 .\Kill-OfficeDead.ps1
 .EXAMPLE
-iex ((New-Object System.Net.WebClient).DownloadString(<url-to-raw_Kill-OfficeDead.ps1'))
+iex ((New-Object System.Net.WebClient).DownloadString(<url-to-raw_Kill-MSOfficeDead.ps1'))
 .NOTES
 David Stein 08/15/2018
 #>
