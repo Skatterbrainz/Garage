@@ -22,8 +22,8 @@ function Stop-CitrixReceiver {
 function Start-CitrixReceiver {
     [CmdletBinding(SupportsShouldProcess=$True)]
     param (
-        $receiver = "C:\Program Files (x86)\Citrix\ICA Client\Receiver\Receiver.exe",
-        $redirector = "C:\Program Files (x86)\Citrix\ICA Client\Redirector.exe"
+        $receiver = "$(${env:ProgramFiles(x86)})\Citrix\ICA Client\Receiver\Receiver.exe",
+        $redirector = "$(${env:ProgramFiles(x86)})\Citrix\ICA Client\Redirector.exe"
     )
     $arglist = "-autoupdate -startplugins -disableshowcontrolpanel"
     try {
