@@ -29,7 +29,7 @@ $searchScopes = (
     "HKLM:\SOFTWARE\Microsoft\Office\OneNote\Addins",
     "HKLM:\SOFTWARE\Microsoft\Office\Outlook\Addins",
     "HKLM:\SOFTWARE\Microsoft\Office\PowerPoint\Addins",
-    "HKLM:\SOFTWARE\Microsoft\Office\Word\Addins"
+    "HKLM:\SOFTWARE\Microsoft\Office\Word\Addins",
     "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Office\Excel\Addins",
     "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Office\OneNote\Addins",
     "HKLM:\SOFTWARE\Wow6432Node\Microsoft\Office\Outlook\Addins",
