@@ -27,7 +27,7 @@ foreach ($computer in $computers) {
                     $item = Get-ChildItem -Path "$opath" -ErrorAction SilentlyContinue
                     if ($item.VersionInfo.ProductVersion -eq $RequiredVersion) {
                         if ($ShowAll) {
-                            $result = @{
+                            $data = @{
                                 HostName = $computer
                                 UserName = $prof.Name
                                 OneDrive = $item.VersionInfo.ProductVersion
@@ -36,44 +36,46 @@ foreach ($computer in $computers) {
                         }
                     }
                     else {
-                        #Write-Host "...$($prof.Name) OneDrive version $($item.VersionInfo.ProductVersion)" -ForegroundColor Red
-                        $result = @{
+                        $data = @{
                             HostName = $computer
                             UserName = $prof.Name
                             OneDrive = $item.VersionInfo.ProductVersion
                             Status   = "Outdated"
                         }
+                        $result = New-Object PSobject -Property $data
                     }
                 }
                 catch {
-                    $result = @{
+                    $data = @{
                         HostName = $computer
                         UserName = $prof.Name
                         OneDrive = "Not Found"
                         Status   = $null
                     }
+                    $result = New-Object PSobject -Property $data
                 }
             }
         }
         catch {
             if ($ShowAll) {
-                $result = @{
+                $data = @{
                     HostName = $computer
                     UserName = $prof.Name
                     OneDrive = "Inaccessible"
                     Status   = $null
                 }
+                $result = New-Object PSobject -Property $data
             }
         }
     }
     else {
-        #write-host "$computer is offline" -ForegroundColor Magenta
-        $result = @{
+        $data = @{
             HostName = $computer
             UserName = $null
             OneDrive = $null
             Status   = "Offline"
         }
+        $result = New-Object PSobject -Property $data
     }
     $profiles = $null
     , $result
