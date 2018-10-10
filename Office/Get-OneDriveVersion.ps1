@@ -1,7 +1,7 @@
 #requires -Version 3
 <#
 .DESCRIPTION
-    Queries OneDrive sync client version for each user on each computer in a list
+    Get OneDrive sync client version for each user on each computer in a list
 .PARAMETER InputType
     List: AD or File
 .PARAMETER InputFile
@@ -15,9 +15,9 @@
     1.0.1 - DS - Added AD input option
     1.0.2 - DS - Added SelectComputers option
 .EXAMPLE
-    .\Check-OneDriveVersion.ps1 -InputType AD -SelectComputers
+    .\Get-OneDriveVersion.ps1 -InputType AD -SelectComputers
 .EXAMPLE
-    .\Check-OneDriveVersion.ps1 -InputType File -InputFile ".\computers.txt" -SelectComputers
+    .\Get-OneDriveVersion.ps1 -InputType File -InputFile ".\computers.txt" -SelectComputers
 #>
 
 [CmdletBinding()]
