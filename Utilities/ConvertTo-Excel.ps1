@@ -1,8 +1,28 @@
+<#
+.DESCRIPTION
+    Convert CSV files to XLSX workbooks
+.PARAMETER Path
+    Folder path where CSV files reside
+.PARAMETER Filename
+    Filename to process from [Path] location, default is ""
+    If [Filename] = "" then all CSV files in [Path] are processed
+.PARAMETER DoNotKeep
+    Remove CSV files after conversion
+.PARAMETER Delimiter
+    CSV column delimiter. Default = comma (",")
+.EXAMPLE
+    .\ConvertTo-Excel.ps1 -Path ".\reports\" -DoNotKeep -WhatIf -Verbose
+.EXAMPLE
+    .\ConvertTo-Excel.ps1 -Path ".\reports\" -Filename "test.csv"
+#>
+
 [CmdletBinding(SupportsShouldProcess=$True)]
 param (
     [parameter(Mandatory=$True, HelpMessage="Folder Path to CSV files")]
         [ValidateNotNullOrEmpty()]
         [string] $Path,
+    [parameter(Mandatory=$False, HelpMessage="Name of file to convert")]
+        [string] $Filename = "",
     [parameter(Mandatory=$False, HelpMessage="Do not keep original CSV files")]
         [switch] $DoNotKeep,
     [parameter(Mandatory=$False)]
@@ -14,11 +34,17 @@ if (!(Test-Path $Path)) {
 }
 try {
     $csvfiles = Get-ChildItem -Path $Path -Filter "*.csv"
+    Write-Verbose "$($csvfiles.count) files found"
 }
 catch {
     Write-Error $_.Exception.Message
     break
 }
+if (![string]::IsNullOrEmpty($Filename)) {
+    Write-Verbose "filtering list on $Filename"
+    $csvfiles = $csvfiles | ? {$_.Name -eq $Filename}
+}
+
 foreach ($csvfile in $csvfiles) {
     Write-verbose "Converting $($csvfile.Fullname)"
     $XlFile = $csvfile.Fullname -replace '.csv','.xlsx'
@@ -54,10 +80,6 @@ foreach ($csvfile in $csvfiles) {
         }
         if ($excel) { 
             Get-Process -Name 'EXCEL' | Stop-Process -Confirm:$False
-        }
-        if ($DoNotKeep) {
-          Write-Verbose "removing $($csvfile.fullname)"
-          Get-Item -Path $csvFile.fullname | Remove-Item -Force
         }
     }
     else {
