@@ -85,5 +85,9 @@ foreach ($csvfile in $csvfiles) {
     else {
         Write-Output $csvfile.fullname
     }
+    if ($DoNotKeep) {
+        Write-Verbose "deleting $($csvfile.Fullname)"
+        Get-Item -Path $csvfile.Fullname | Remove-item -Force -Confirm:$False
+    }
     Write-Output $result
 } # foreach
