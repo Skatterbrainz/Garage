@@ -1,6 +1,6 @@
 @echo off
 rem ------------------------------------------------------------------
-rem filename.... install_msproject.bat
+rem filename.... install_project.bat
 rem author...... David Stein
 rem date........ 2018.09.25
 rem purpose..... offline installation of Project Client for Office 365 ProPlus for remote devices
