@@ -9,12 +9,12 @@ if (![string]::IsNullOrEmpty($ComputerName)) {
 else {
     $as = [adsisearcher]"(objectCategory=Computer)"
 }
-$as.PropertiesToLoad.Add('cn')
-$as.PropertiesToLoad.Add('lastlogonTimeStamp')
-$as.PropertiesToLoad.Add('whenCreated')
-$as.PropertiesToLoad.Add('operatingSystem')
-$as.PropertiesToLoad.Add('operatingSystemVersion')
-$as.PropertiesToLoad.Add('distinguishedName')
+$as.PropertiesToLoad.Add('cn') | Out-Null
+$as.PropertiesToLoad.Add('lastlogonTimeStamp') | Out-Null
+$as.PropertiesToLoad.Add('whenCreated') | Out-Null
+$as.PropertiesToLoad.Add('operatingSystem') | Out-Null
+$as.PropertiesToLoad.Add('operatingSystemVersion') | Out-Null
+$as.PropertiesToLoad.Add('distinguishedName') | Out-Null
 $as.PageSize = 200
 $as.FindAll() | 
     ForEach-Object {
