@@ -14,6 +14,8 @@
     .\ConvertTo-Excel.ps1 -Path ".\reports\" -DoNotKeep -WhatIf -Verbose
 .EXAMPLE
     .\ConvertTo-Excel.ps1 -Path ".\reports\" -Filename "test.csv"
+.NOTES
+    1.0.3 - DS - I don't know. I forgot what 1.0.1 and 1.0.2 did so I made 1.0.3
 #>
 
 [CmdletBinding(SupportsShouldProcess=$True)]
@@ -79,7 +81,7 @@ foreach ($csvfile in $csvfiles) {
             $excel.Quit()
         }
         if ($excel) { 
-            Get-Process -Name 'EXCEL' | Stop-Process -Confirm:$False
+            Get-Process -Name 'EXCEL' | Stop-Process -Confirm:$False -ErrorAction SilentlyContinue
         }
     }
     else {
@@ -87,7 +89,12 @@ foreach ($csvfile in $csvfiles) {
     }
     if ($DoNotKeep) {
         Write-Verbose "deleting $($csvfile.Fullname)"
-        Get-Item -Path $csvfile.Fullname | Remove-item -Force -Confirm:$False
+        try {
+            Get-Item -Path $csvfile.Fullname | Remove-item -Force -Confirm:$False -ErrorAction SilentlyContinue
+        }
+        catch {
+            Write-Error $_.Exception.Message
+        }
     }
     Write-Output $result
 } # foreach
