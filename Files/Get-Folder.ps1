@@ -1,7 +1,12 @@
 function Get-Folder {
+    [CmdletBinding()]
     param (
-        $DefaultPath = "C:\",
-        $Caption = "Select Folder"
+        [parameter(Mandatory=$False, HelpMessage="Default Folder Path")]
+        [ValidateNotNullOrEmpty()]
+        [string] $DefaultPath = "C:\",
+        [parameter(Mandatory=$False, HelpMessage="Dialog Caption text")]
+        [ValidateNotNullOrEmpty()]
+        [string] $Caption = "Select Folder"
     )
     [Reflection.Assembly]::LoadWithPartialName("System.Windows.Forms") | Out-Null
     [System.Windows.Forms.Application]::EnableVisualStyles()
@@ -14,9 +19,11 @@ function Get-Folder {
         if ($Browse.ShowDialog() -eq "OK") {
             $Loop = $False
             $Result = $Browse.SelectedPath
+            Write-Verbose "clicked ok button"
         }
         else {
             $Loop = $False
+            Write-Verbose "clicked cancel or closed form"
         }
     }
     $Browse.Dispose()
