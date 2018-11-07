@@ -1,9 +1,14 @@
 function Get-ElapsedRunTime {
     [CmdletBinding()]
     param (
+        [parameter(Mandatory=$True, HelpMessage="Base start time")]
         $StartTime,
+        [parameter(Mandatory=$True, HelpMessage="Current item number within total item count")]
+        [ValidateRange(1
         [int] $CurrentItem,
+        [parameter(Mandatory=$True, HelpMessage="Total item count")]
         [int] $ItemCount,
+        [parameter(Mandatory=$False, HelpMessage="Display estimated completion time")]
         [switch] $EstimateCompletion
     )
     $elapsed  = New-TimeSpan -Start $StartTime -End $(Get-Date)
