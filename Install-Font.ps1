@@ -1,4 +1,12 @@
 <#
+.SYNOPSIS
+    Install TrueType or OpenType fonts
+.DESCRIPTION
+    Install all TrueType or OpenType fonts from a given folder path
+.PARAMETER FontFolder
+    Source path where font files reside
+.EXAMPLE
+    .\Install-Font.ps1 -FontFolder "x:\fonts"
 .NOTES
     Derived from the following:
     Author: Robert Pearman
@@ -10,21 +18,18 @@ param (
         [ValidateNotNull()]
         [string] $FontFolder
 )
-#$padVal = 20
-#$pcLabel   = "Connecting To".PadRight($padVal," ")
-#$installLabel = "Installing Font".PadRight($padVal," ")
-#$errorLabel = "Computer Unavailable".PadRight($padVal," ")
 $openType   = "(Open Type)"
 $regPath    = "HKLM:\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Fonts"
 $objShell   = New-Object -ComObject Shell.Application
+$destination = "c:\Windows\Fonts"
 if (!(Test-Path $fontFolder)) {
     Write-Warning "$fontFolder - Not Found"
 }
 else {
     $objFolder = $objShell.namespace($fontFolder)
     try {
-        $destination = "c:\Windows\Fonts" -join ""
         foreach ($file in $objFolder.items()) {
+            Write-Verbose "font: $file"
             $fileType = $($objFolder.getDetailsOf($file, 2))
             if (($fileType -eq "OpenType font file") -or ($fileType -eq "TrueType font file")) {
                 $fontName    = $($objFolder.getDetailsOf($File, 21))
@@ -37,6 +42,6 @@ else {
         }
     }
     catch {
-        Write-Warning "$errorLabel : $pcName"
+        Write-Warning $Error[0].Exception.Message
     }
 }
