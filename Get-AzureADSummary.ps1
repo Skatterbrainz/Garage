@@ -2,12 +2,12 @@
 
 [CmdletBinding()]
 param (
-    $GAUserName = 'dave@skatterbrainz.xyz'
+    $GAUserName
 )
 
 function Connect-AzCloud {
     param (
-        [ValidateSet('azuread','azure','exo','msonline')]
+        [ValidateSet('azuread', 'azure', 'exo', 'msonline')]
         [string] $Environment
     )
     try {
@@ -16,7 +16,7 @@ function Connect-AzCloud {
                 $result = Connect-AzureAD
                 break
             }
-            'azure'   {
+            'azure' {
                 $result = Connect-AzAccount
                 break
             }
@@ -32,7 +32,7 @@ function Connect-AzCloud {
             }
         }
     }
-    catch {}
+    catch { }
     finally {
         $result
     }
