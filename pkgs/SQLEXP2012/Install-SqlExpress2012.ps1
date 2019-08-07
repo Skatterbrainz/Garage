@@ -1,3 +1,17 @@
+<#
+.SYNOPSIS
+    Install or Uninstall SQL Express 2012 64-bit
+.DESCRIPTION
+    Did I stutter?
+.PARAMETER InstFile
+    Name of installation file (must match bitness and language of CfgFile)
+.PARAMETER CfgFile
+    INI file to invoke (must match bitness and language of InstFile)
+.OUTPUT
+    One of the following:
+    0 (zero) if successful, or integer result from setup.exe exit code
+    Error message if the whole thing implodes into a ball of flaming poo
+#>
 [CmdletBinding()]
 param (
     [string] $InstFile = "SQLEXPR_x64_ENU.exe",
