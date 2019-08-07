@@ -11,8 +11,16 @@
 
 * Drop all of the above files into a common location.
 * Run the Install-SqlExpress2012.ps1 script
-  * Installation: nothing else required (or change -CfgFile to your own)
-  * Uninstall: specify -CfgFile "uninstall.ini" (or change to your own file)
+
+```powershell
+Install-SqlExpress2012.ps1 -Verbose
+# or
+Install-SqlExpress2012.ps1 -CfgFile "install.ini" -Verbose
+```
+
+```powershell
+Install-SqlExpress2012.ps1 -CfgFile "uninstall.ini" -Verbose
+```
 
 ## Notes
 
