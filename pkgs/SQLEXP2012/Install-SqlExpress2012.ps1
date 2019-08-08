@@ -11,6 +11,9 @@
     One of the following:
     0 (zero) if successful, or integer result from setup.exe exit code
     Error message (if it dies)
+.NOTES
+    1.0.0 - David Stein - 2018.09.04
+    1.0.1 - David Stein - 2019.08.07
 #>
 [CmdletBinding()]
 param (
