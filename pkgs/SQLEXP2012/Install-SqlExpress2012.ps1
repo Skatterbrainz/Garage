@@ -10,7 +10,7 @@
 .OUTPUT
     One of the following:
     0 (zero) if successful, or integer result from setup.exe exit code
-    Error message if the whole thing implodes into a ball of flaming poo
+    Error message (if it dies)
 #>
 [CmdletBinding()]
 param (
