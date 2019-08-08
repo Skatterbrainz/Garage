@@ -25,6 +25,8 @@
   * cinst sql-server-management-studio
 * RSAT for Windows 10 1803
   * https://www.microsoft.com/download/confirmation.aspx?id=45520
+* Edge Insider Preview
+  * https://go.microsoft.com/fwlink/?linkid=2084648&Channel=Dev&language=en&Consent=0&IID=cb953dea-c69e-5e08-955c-132fa2eb30c3
 
 ## Office 365 ProPlus ADMX Templates (4888.1000 - 7/19/2019)
 
