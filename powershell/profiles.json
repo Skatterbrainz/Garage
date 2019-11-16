@@ -1,0 +1,130 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+    "defaultProfile": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+    "profiles":
+    [
+        {
+            // Make changes here to the powershell.exe profile
+			"acrylicOpacity" : 0.95,
+			"backgroundImage" : "C:/Images/ps5.1.png",
+			"background": "#13263a",
+			"backgroundImageOpacity" : 0.2,
+			"backgroundImageStretchMode" : "uniformToFill",
+			"closeOnExit" : true,
+			"cursorColor" : "#FFFFFF",
+			"cursorShape" : "underscore",
+			"fontFace" : "Fira Code",
+			"fontSize" : 12,
+			"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+			"name": "Windows PowerShell 5.1",
+			"commandline": "powershell.exe",
+			"hidden": false
+        },
+		{
+			"acrylicOpacity" : 0.85,
+			"background" : "#012456",
+			"backgroundImage" : "C:/Images/marvin.jpg",
+			"backgroundImageOpacity" : 0.1,
+			"backgroundImageStretchMode" : "uniformToFill",
+			"closeOnExit" : true,
+			"colorScheme" : "Solarized Dark",
+			"commandline" : "powershell.exe",
+			"cursorColor" : "#00FF00",
+			"cursorHeight" : 25,
+			"cursorShape" : "vintage",
+			"fontFace" : "Fira Code",
+			"fontSize" : 12,
+			"guid" : "{79285a8e-036c-446f-8a9c-78994e34bf78}",
+			"historySize" : 9001,
+			"name" : "PowerShell 5.1",
+			/*"padding" : "0, 0, 0, 0",*/
+			"snapOnInput" : true,
+			"startingDirectory" : "%USERPROFILE%",
+			"useAcrylic" : false
+		},
+		{
+			"acrylicOpacity" : 0.95,
+			"backgroundImage" : "C:/Images/ps6.png",
+			"background": "#13263a",
+			"backgroundImageOpacity" : 0.2,
+			"backgroundImageStretchMode" : "uniformToFill",
+			"closeOnExit" : true,
+			"cursorColor" : "#FFFFFF",
+			"cursorShape" : "underscore",
+			"fontFace" : "Consolas",
+			"fontSize" : 12,
+			"guid": "{574e775e-4f2a-5b96-ac1e-a2962a402336}",
+			"hidden": false,
+			"name": "PowerShell Core 6.2",
+			/*"padding" : "0, 0, 0, 0",*/
+			"snapOnInput" : true,
+			"startingDirectory" : "%USERPROFILE%",
+			"source": "Windows.Terminal.PowershellCore"
+		},
+		{
+			"acrylicOpacity" : 0.85,
+			"backgroundImage" : "C:/Images/ps7.png",
+			"background": "#13263a",
+			"backgroundImageOpacity" : 0.1,
+			"backgroundImageStretchMode" : "uniformToFill",
+			"closeOnExit" : true,
+			"colorScheme" : "Campbell",
+			"commandline" : "C:\\Program Files\\PowerShell\\7-preview\\pwsh.exe",
+			"cursorColor" : "#FFFFFF",
+			"cursorShape" : "underscore",
+			"fontFace" : "Consolas",
+			"fontSize" : 12,
+			"guid" : "{90cbdc15-f4fe-49d2-a245-ec066b70845f}",
+			"historySize" : 9001,
+			"icon" : "C:\\Program Files\\PowerShell\\7-preview\\assets\\Powershell_av_colors.ico",
+			"name" : "PowerShell 7 preview",
+			"padding" : "0, 0, 0, 0",
+			"snapOnInput" : true,
+			"startingDirectory" : "%USERPROFILE%",
+			"useAcrylic" : false
+		},
+		{
+			"acrylicOpacity" : 0.85,
+			"backgroundImage": "c:/images/1280px-Microsoft_Azure_Logo.svg.png",
+			"background": "#13263a",
+			"backgroundImageOpacity": 0.1,
+			"backgroundImageStretchMode": "uniformToFill",
+			"closeOnExit" : true,
+			"cursorColor" : "#FFFFFF",
+			"cursorShape" : "underscore",
+			"fontFace" : "Consolas",
+			"fontSize" : 12,
+			"guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+			"hidden": false,
+			"name": "Azure Cloud Shell",
+			/*"padding" : "0, 0, 0, 0",*/
+			"snapOnInput" : true,
+			"startingDirectory" : "%USERPROFILE%",
+			"source": "Windows.Terminal.Azure"
+		},
+		{
+			// Make changes here to the cmd.exe profile
+			"acrylicOpacity" : 0.5,
+			"closeOnExit" : true,
+			"cursorColor" : "#FFFFFF",
+			"cursorShape" : "underscore",
+			"fontFace" : "Fira Code",
+			"fontSize" : 12,
+			"guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+			"name": "Command",
+			"commandline": "cmd.exe",
+			"hidden": false
+		}
+    ],
+
+    // Add custom color schemes to this array
+    "schemes": [],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": []
+}
