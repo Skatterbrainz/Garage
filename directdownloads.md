@@ -37,6 +37,8 @@
 
 * Chrome ADMX Templates
   * https://dl.google.com/dl/edgedl/chrome/policy/policy_templates.zip
+* Chrome 64-bit Direct Download Link
+  * https://dl.google.com/dl/chrome/install/googlechromestandaloneenterprise64.msi
   
 ## Oracle JRE
 
@@ -49,7 +51,18 @@
 
 * Flash Player ActiveX (32.0.0.223)
   * https://download.macromedia.com/pub/flashplayer/pdc/32.0.0.223/install_flash_player_32_active_x.msi
+  
   * cinst flashplayeractivex
+  
+* Flash Player Installer URL Syntax
+  * https://fpdownload.macromedia.com/pub/flashplayer/pdc/<FULLVERSION>/install_flash_player_<MAJORVERSION>_ppapi.msi
+    (Example: 32.0.0.223) 
+  * https://download.macromedia.com/pub/flashplayer/pdc/32.0.0.223/install_flash_player_32_active_x.msi (AX)
+  * https://download.macromedia.com/pub/flashplayer/pdc/32.0.0.223/install_flash_player_32_ppapi.msi (PPAPI)
+   * https://download.macromedia.com/pub/flashplayer/pdc/32.0.0.223/install_flash_player_32_plugin.msi (NPAPI/Plugin)
+ 
+ * Flash Player Master Version XML Reference
+   * https://fpdownload.macromedia.com/pub/flashplayer/masterversion/masterversion.xml
   
 ## LogMeIn
 
